@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+	</head>
+	<body>
+	<script>
+		var Seed = {};
+		var signed_request = "ck0erczZOkEVDoHigHVw5obZyEpDR4-Zn9Nh8B9Yy50.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjEzODAyMTQ4MDAsImlzc3VlZF9hdCI6MTM4MDIxMDI1MCwib2F1dGhfdG9rZW4iOiJDQUFBQUhseVpBcjlzQkFMQUNUMG8yU2xrNklJQjh3a2lFMmZ5dDVnQU1aQU9MOHlzeUJLREFiZHFSbFZheUVuR0dBTWhOSHVPVXYyVmFXR2JZMmJFcHVqT3BJVElNNGdBT0JaQ285aXRlM1VaQXY1ZGRvS05WVmRPa21ZajBwT2ppWkNlNjgzSGVoSlpBeFRnbFBON1NvRFpCbTJJVHoyZHUwZnFQd203WTQyTUZsOFZhbkNSeVhoRE1jQlZwanFPTUJSNHo5VVpDSERaQ0VnWkRaRCIsInVzZXIiOnsiY291bnRyeSI6InVzIiwibG9jYWxlIjoiZW5fVVMiLCJhZ2UiOnsibWluIjoxOCwibWF4IjoyMH19LCJ1c2VyX2lkIjoiNzc5MTE4NjIyIn0";
+		var ts = (new Date().getTime() / 1000);
+		var cts = parseInt( (ts - 25.1) * 1000);
+		var server = 357;
+//https://www357.kingdomsofcamelot.com/fb/e2/src/main_src.php?g=M&y=0&n=organic&l=en_US&messagebox=&sp=MTM3Mzk0MjE0OUtWRFKIs1_xOMk-&standalone=0&fbIframeOn=1&res=1&iframe=1&lang=en&appBar=&ts=1380210546.548&cts=1380210521448.0002&signed_request=ck0erczZOkEVDoHigHVw5obZyEpDR4-Zn9Nh8B9Yy50.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjEzODAyMTQ4MDAsImlzc3VlZF9hdCI6MTM4MDIxMDI1MCwib2F1dGhfdG9rZW4iOiJDQUFBQUhseVpBcjlzQkFMQUNUMG8yU2xrNklJQjh3a2lFMmZ5dDVnQU1aQU9MOHlzeUJLREFiZHFSbFZheUVuR0dBTWhOSHVPVXYyVmFXR2JZMmJFcHVqT3BJVElNNGdBT0JaQ285aXRlM1VaQXY1ZGRvS05WVmRPa21ZajBwT2ppWkNlNjgzSGVoSlpBeFRnbFBON1NvRFpCbTJJVHoyZHUwZnFQd203WTQyTUZsOFZhbkNSeVhoRE1jQlZwanFPTUJSNHo5VVpDSERaQ0VnWkRaRCIsInVzZXIiOnsiY291bnRyeSI6InVzIiwibG9jYWxlIjoiZW5fVVMiLCJhZ2UiOnsibWluIjoxOCwibWF4IjoyMH19LCJ1c2VyX2lkIjoiNzc5MTE4NjIyIn0
+		
+		function new_seed(rslt){
+			var mainSrcHTMLCode = rslt;
+			var myregexp = /var seed=\{.*?\};/;                      
+			var match = myregexp.exec(mainSrcHTMLCode);
+			if (match != null) {
+			 //logit("found match");
+			 result = match[0];
+			 result = result.substr(4);
+			 
+			 var seed2 = eval(result);
+			 
+			 for (jj in seed2) {
+				if (seed2.hasOwnProperty(jj)) {
+				   Seed[jj] = seed2[jj];
+				}
+			 }
+			 
+			//                         delete Seed.ss;
+
+			 for (var o = 0; o < Seed.cities.length; o++) {
+				var n = Seed.cities[o][0];
+				Seed.citystats["city" + n].pop[0] = parseInt(Seed.citystats["city" + n].pop[0]);
+				Seed.citystats["city" + n].pop[1] = parseInt(Seed.citystats["city" + n].pop[1]);
+				Seed.citystats["city" + n].pop[2] = parseInt(Seed.citystats["city" + n].pop[2]);
+				Seed.citystats["city" + n].gold[0] = parseInt(Seed.citystats["city" + n].gold[0]);
+				Seed.citystats["city" + n].gold[1] = parseInt(Seed.citystats["city" + n].gold[1]);
+				Seed.newTradeReports = parseInt(Seed.newTradeReports);
+				for (var m = 1; m < 5; m++) {
+				   Seed.resources["city" + n]["rec" + m][0] = parseInt(Seed.resources["city" + n]["rec" + m][0]);
+				   Seed.resources["city" + n]["rec" + m][1] = parseInt(Seed.resources["city" + n]["rec" + m][1]);
+				   Seed.resources["city" + n]["rec" + m][2] = parseInt(Seed.resources["city" + n]["rec" + m][2]);
+				   Seed.resources["city" + n]["rec" + m][3] = parseInt(Seed.resources["city" + n]["rec" + m][3]);
+				}
+				var b = Seed.queue_con["city" + n];
+				var d = unsafeWindow.Object.keys(Seed.buildings["city" + n]);
+				for (var h = 0; h < b.length; h++) {
+				   for (var m = 0; m < d.length; m++) {
+					  if (Seed.buildings["city" + n][d[m]][3] == b[h][2]) {
+						 b[h][7] = Seed.buildings["city" + n][d[m]][2];
+						 break;
+					  }
+				   }
+				}
+			 }
+			 if (Seed.queue_throne.length == 0) {
+				Seed.queue_throne = {};
+			 }
+			}
+			
+			window.body.innerText += Seed.toSource();
+		}
+		
+		//Build url
+		var url = "https://www"+server+".kingdomsofcamelot.com/fb/e2/src/main_src.php?g=M&y=0&n=organic&l=en_US&messagebox=&sp=MTM3Mzk0MjE0OUtWRFKIs1_xOMk-&standalone=0&fbIframeOn=1&res=1&iframe=1&lang=en&appBar="+"&ts="+ts+"&cts="+cts+"&signed_request="+signed_request;
+		
+		console.log(url);
+		
+		$.ajax({
+			url:url,
+			success:function(rslt){new_seed(rslt);}
+		});
+		
+	</script>
+	</body>
+</html>

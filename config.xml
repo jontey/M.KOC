@@ -1,0 +1,7 @@
+<widget>
+	<id>m.jontey.koc</id>
+	<version>0.0.1</version>
+	<name>Mobile Koc Monitor</name>
+	<description>Let's try this out</description>
+	<access origin="https://kingdomsofcamelot.com" subdomains="true" />
+</widget>
