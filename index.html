@@ -3,6 +3,7 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 	</head>
 	<body>
+	<div></div>
 	<script>
 		var Seed = {};
 		var signed_request = "ck0erczZOkEVDoHigHVw5obZyEpDR4-Zn9Nh8B9Yy50.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjEzODAyMTQ4MDAsImlzc3VlZF9hdCI6MTM4MDIxMDI1MCwib2F1dGhfdG9rZW4iOiJDQUFBQUhseVpBcjlzQkFMQUNUMG8yU2xrNklJQjh3a2lFMmZ5dDVnQU1aQU9MOHlzeUJLREFiZHFSbFZheUVuR0dBTWhOSHVPVXYyVmFXR2JZMmJFcHVqT3BJVElNNGdBT0JaQ285aXRlM1VaQXY1ZGRvS05WVmRPa21ZajBwT2ppWkNlNjgzSGVoSlpBeFRnbFBON1NvRFpCbTJJVHoyZHUwZnFQd203WTQyTUZsOFZhbkNSeVhoRE1jQlZwanFPTUJSNHo5VVpDSERaQ0VnWkRaRCIsInVzZXIiOnsiY291bnRyeSI6InVzIiwibG9jYWxlIjoiZW5fVVMiLCJhZ2UiOnsibWluIjoxOCwibWF4IjoyMH19LCJ1c2VyX2lkIjoiNzc5MTE4NjIyIn0";
@@ -60,17 +61,24 @@
 			 }
 			}
 			
-			window.body.innerText += Seed.toSource();
+			document.getElementsByTagName('div')[0].innerText += Seed.toSource();
 		}
 		
 		//Build url
 		var url = "https://www"+server+".kingdomsofcamelot.com/fb/e2/src/main_src.php?g=M&y=0&n=organic&l=en_US&messagebox=&sp=MTM3Mzk0MjE0OUtWRFKIs1_xOMk-&standalone=0&fbIframeOn=1&res=1&iframe=1&lang=en&appBar="+"&ts="+ts+"&cts="+cts+"&signed_request="+signed_request;
 		
 		console.log(url);
+		document.getElementsByTagName('div')[0].innerText += url;
 		
 		$.ajax({
 			url:url,
-			success:function(rslt){new_seed(rslt);}
+			success:function(rslt){new_seed(rslt);},
+			error:function(xhr, status, error){
+			console.log(xhr);
+				document.getElementsByTagName('div')[0].innerText += "\n"+xhr;
+				document.getElementsByTagName('div')[0].innerText += "\n"+status;
+				document.getElementsByTagName('div')[0].innerText += "\n"+error;
+			}
 		});
 		
 	</script>
