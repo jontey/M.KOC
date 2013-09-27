@@ -79,6 +79,14 @@
 			}
 		});
 
+		
+	var Options = {
+		includeMarching : false,
+		includeTrainingExt : false,
+		overviewFontSize : 12,
+		overviewAllowOverflow : false,
+	};
+	
 	function paintOverview (){
 		var rownum = 0;
 		var t = document.getElementById("Overview");
@@ -129,10 +137,6 @@
 		  return m.join('');
 		}
     
-	var Options = {
-		includeMarching : false,
-		includeTrainingExt : false
-	}
     //DebugTimer.start(); 
     try {
       if (Options.includeMarching)
@@ -392,7 +396,7 @@
          &nbsp; &nbsp; FONT SIZE: '+ htmlSelector ({9:9, 10:10, 11:11, 12:12}, Options.overviewFontSize, 'id=ptoverfont') +'</td></tr><BR>';
       str += "</table></div>";
       str+= 'Koc Power Tools Version:' + Version;
-      t.Overv.innerHTML = str;
+      t.innerHTML = str;
       document.getElementById('idCheck').addEventListener('click', e_clickEnableMarch, false);
       document.getElementById('ptoverIncTrain').addEventListener('click', e_clickEnableTraining, false);
       document.getElementById('ptoverIncTrainExt').addEventListener('click', e_clickEnableTrainingExt, false);
@@ -400,42 +404,42 @@
       document.getElementById('ptoverfont').addEventListener('change', e_fontSize, false);
     //DebugTimer.display ('Draw Overview');    
     } catch (e){
-      new CdialogCancelContinue ('<PRE>'+ inspect(e,3,1) +'</pre>', null, null, true);
-      t.Overv.innerHTML = '<PRE>'+ e.name +' : '+ e.message +' on '+ e.lineNumber +'</pre>';
+      //new CdialogCancelContinue ('<PRE>'+ inspect(e,3,1) +'</pre>', null, null, true);
+      t.innerHTML = '<PRE>'+ e.name +' : '+ e.message +' on '+ e.lineNumber +'</pre>';
     }   
-    t.displayTimer = setTimeout (t.paintOld, 5000);	
+    //t.displayTimer = setTimeout (t.paintOld, 5000);	
 
     function e_clickEnableMarch (){
-      var t = Tabs.OverView;
+      //var t = Tabs.OverView;
       Options.includeMarching = document.getElementById('idCheck').checked;
-      t.paintOld ();
+      paintOverview ();
     }
     function e_clickEnableTraining (){
-      var t = Tabs.OverView;
+      //var t = Tabs.OverView;
       Options.includeTraining = document.getElementById('ptoverIncTrain').checked;
-      t.paintOld ();
+      paintOverview ();
     }
     function e_clickEnableTrainingExt (){
-      var t = Tabs.OverView;
+      //var t = Tabs.OverView;
       Options.includeTrainingExt = document.getElementById('ptoverIncTrainExt').checked;
-      t.paintOld ();
+      paintOverview ();
     }
 
     function e_fontSize(evt){
       document.getElementById('ptOverOutput').style.fontSize = evt.target.value +'px'; 
       Options.overviewFontSize = evt.target.value;
-      t.paintOld ();
+      paintOverview ();
     }
 
     function e_allowWidthOverflow (evt){
-      var t = Tabs.OverView;
+      //var t = Tabs.OverView;
       var tf = document.getElementById('ptOverOver').checked;
       Options.overviewAllowOverflow = tf;
       if (tf)
-        t.Overv.style.overflowX = 'visible';
+        t.style.overflowX = 'visible';
       else
-        t.Overv.style.overflowX = 'auto';
-      t.paintOld ();
+        t.style.overflowX = 'auto';
+      paintOverview ();
     }
   }
   function setCities(){
