@@ -6,6 +6,7 @@
 	<div></div>
 	<script>
 		var Seed = {};
+		var cm = {};
 		var signed_request = "ck0erczZOkEVDoHigHVw5obZyEpDR4-Zn9Nh8B9Yy50.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjEzODAyMTQ4MDAsImlzc3VlZF9hdCI6MTM4MDIxMDI1MCwib2F1dGhfdG9rZW4iOiJDQUFBQUhseVpBcjlzQkFMQUNUMG8yU2xrNklJQjh3a2lFMmZ5dDVnQU1aQU9MOHlzeUJLREFiZHFSbFZheUVuR0dBTWhOSHVPVXYyVmFXR2JZMmJFcHVqT3BJVElNNGdBT0JaQ285aXRlM1VaQXY1ZGRvS05WVmRPa21ZajBwT2ppWkNlNjgzSGVoSlpBeFRnbFBON1NvRFpCbTJJVHoyZHUwZnFQd203WTQyTUZsOFZhbkNSeVhoRE1jQlZwanFPTUJSNHo5VVpDSERaQ0VnWkRaRCIsInVzZXIiOnsiY291bnRyeSI6InVzIiwibG9jYWxlIjoiZW5fVVMiLCJhZ2UiOnsibWluIjoxOCwibWF4IjoyMH19LCJ1c2VyX2lkIjoiNzc5MTE4NjIyIn0";
 		var ts = (new Date().getTime() / 1000);
 		var cts = parseInt( (ts - 25.1) * 1000);
@@ -17,6 +18,7 @@
 			var myregexp = /var seed=\{.*?\};/;                      
 			var match = myregexp.exec(mainSrcHTMLCode);
 			if (match != null) {
+			
 			 //logit("found match");
 			 result = match[0];
 			 result = result.substr(4);
@@ -28,7 +30,7 @@
 				   Seed[jj] = seed2[jj];
 				}
 			 }
-			 
+			 console.log(Seed);
 			//                         delete Seed.ss;
 
 			 for (var o = 0; o < Seed.cities.length; o++) {
@@ -74,10 +76,7 @@
 			url:url,
 			success:function(rslt){new_seed(rslt);},
 			error:function(xhr, status, error){
-			console.log(xhr);
-				document.getElementsByTagName('div')[0].innerText += "\n"+xhr;
-				document.getElementsByTagName('div')[0].innerText += "\n"+status;
-				document.getElementsByTagName('div')[0].innerText += "\n"+error;
+				console.log(xhr);
 			}
 		});
 		
