@@ -8,6 +8,7 @@
 	</div>
 	<script>
 		var Seed = {};
+		var Cities = {};
 		var cm = {};
 		var signed_request = "ck0erczZOkEVDoHigHVw5obZyEpDR4-Zn9Nh8B9Yy50.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjEzODAyMTQ4MDAsImlzc3VlZF9hdCI6MTM4MDIxMDI1MCwib2F1dGhfdG9rZW4iOiJDQUFBQUhseVpBcjlzQkFMQUNUMG8yU2xrNklJQjh3a2lFMmZ5dDVnQU1aQU9MOHlzeUJLREFiZHFSbFZheUVuR0dBTWhOSHVPVXYyVmFXR2JZMmJFcHVqT3BJVElNNGdBT0JaQ285aXRlM1VaQXY1ZGRvS05WVmRPa21ZajBwT2ppWkNlNjgzSGVoSlpBeFRnbFBON1NvRFpCbTJJVHoyZHUwZnFQd203WTQyTUZsOFZhbkNSeVhoRE1jQlZwanFPTUJSNHo5VVpDSERaQ0VnWkRaRCIsInVzZXIiOnsiY291bnRyeSI6InVzIiwibG9jYWxlIjoiZW5fVVMiLCJhZ2UiOnsibWluIjoxOCwibWF4IjoyMH19LCJ1c2VyX2lkIjoiNzc5MTE4NjIyIn0";
 		var ts = (new Date().getTime() / 1000);
@@ -250,7 +251,8 @@
       for(i=0; i<Cities.numCities; i++) {
         var rp = getResourceProduction (Cities.cities[i].id);
         var usage = parseInt(Seed.resources["city" + Cities.cities[i].id]['rec1'][3]);
-	var bp = uW.cm.Resources.getProductionBase (1,Cities.cities[i].id);
+		//var bp = uW.cm.Resources.getProductionBase (1,Cities.cities[i].id);
+		var bp = 1;
 //
 // adjust for throne room bonuses
         var trupkeepreduce = 0;
@@ -258,7 +260,8 @@
         var trprodres = equippedthronestats(82);
         var trprod = [0,0,0,0,0];
         trprod[1] = Math.min(equippedthronestats(83) + trprodres, 2000);
-        var upkbase =  uW.cm.Resources.getUpkeep (1,Cities.cities[i].id)/(1-trupkeepreduce/100);
+        //var upkbase =  cm.Resources.getUpkeep (1,Cities.cities[i].id)/(1-trupkeepreduce/100);
+		var upkbase = 0;
         usage = parseInt(usage - upkbase*trupkeepreduce/100);
         row[i] = parseInt(rp[1] - usage + bp*trprod[1]/100);
       }
@@ -583,6 +586,14 @@ function getCityBuilding (cityId, buildingId){
   }
   return ret;
 }
+function unixTime (){
+  return parseInt (new Date().getTime() / 1000);
+}
+	</script>
+	
+	<script>
+		setCities();
+		paintOverview();
 	</script>
 	</body>
 </html>
